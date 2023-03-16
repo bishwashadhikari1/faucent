@@ -1,0 +1,22 @@
+name: faucent
+description: A new Flutter project. 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0' 
+ 
+dependencies:
+  flutter:
+    sdk: flutter
+  algorand_dart: ^1.0.0
+  qr_flutter: ^4.0.0
+  flutter_barcode_scanner: ^2.0.0
+  http: ^0.13.3
+  shared_preferences: ^2.0.10 
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter 
+  flutter_lints: ^2.0.0
+ 
