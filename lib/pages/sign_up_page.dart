@@ -1,6 +1,7 @@
 import 'package:algorand_dart/algorand_dart.dart';
 import 'package:flutter/material.dart';
 import 'account_selection_page.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final storage = FlutterSecureStorage();
   Future<void> _createWallet() async {
     try {
       // Create an Algorand account
@@ -16,7 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
       // Save the account's seed phrase
       final seedPhrase = await account.seedPhrase;
 
-      // TODO: Save the seed phrase securely
+      await storage.write(key: 'seedPhrase', value: seedPhrase.join(" "));
 
       // Display the seed phrase to the user
       await showDialog(
@@ -24,7 +26,8 @@ class _SignUpPageState extends State<SignUpPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Your Seed Phrase'),
-            content: Text(seedPhrase.join(' ')),
+            content: Text(seedPhrase.join(' ')+ 
+            " Please write this down and store it securely. Funds cannot be accessed once lost."),
             actions: <Widget>[
               MaterialButton(
                 child: Text('Close'),
